@@ -5,10 +5,22 @@ const app = express()
 
 app.use(bodyPareser.urlencoded({ extended: true }))
 
+
+const productAdminRoutes = require('./routes/admin/products')
+app.use('/admin', productAdminRoutes)
+
+const productRoutes = require('./routes/products')
+app.use(productRoutes)
+
+
 const sequelize = require('./util/db')
 
+
+const models = require('./models/index')
+sequelize.models = models
+
 sequelize
-    .authenticate()
+    .sync()
     .then(() => {
         console.log('<<<<<<!!Yes connected!!>>>>>>')
     })
