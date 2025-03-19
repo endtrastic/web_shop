@@ -3,7 +3,8 @@ const Product = require('../../models/product');
 class adminController {
     async addProduct(req, res) {
         try {
-            const { title, price, imageUrl, description } = req.body;
+            const { title, price, imageUrl, description} = req.body;
+            const userId = req.user.id
 
             if (!title || !price || !imageUrl || !description) {
                 return res.status(400).json({ message: 'All fields are required' });
@@ -14,6 +15,7 @@ class adminController {
                 price,
                 imageUrl,
                 description,
+                userId
             });
 
             res.status(201).json({
