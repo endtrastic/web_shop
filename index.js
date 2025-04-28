@@ -17,6 +17,9 @@ app.use((req, res, next) => {
 })
 
 
+
+// Actually using all of the routes
+
 const productAdminRoutes = require('./routes/admin/products')
 app.use('/admin', productAdminRoutes)
 
@@ -25,6 +28,12 @@ app.use(productRoutes)
 
 const shopRoutes = require('./routes/shop')
 app.use(shopRoutes)
+
+const orderRoutes = require("./routes/orders");
+app.use(orderRoutes);
+ 
+
+
 
 const models = require('./models/index')
 sequelize.models = models
